@@ -5,7 +5,6 @@ module.exports = {
     const { id } = req.params;
     let { user } = req.session;
 
-    // This will return -1 if it isn't in the cart
     const index = user.cart.findIndex(swag => swag.id == id);
 
     if (index === -1) {
@@ -13,9 +12,11 @@ module.exports = {
 
       user.cart.push(selectedSwag);
       user.total += selectedSwag.price;
+      
     }
 
     res.status(200).send(user);
+    
   },
 
   delete: (req, res) => {
